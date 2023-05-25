@@ -1,6 +1,7 @@
 import fp from "fastify-plugin";
 import dotenv from "dotenv";
 import postgres from "@fastify/postgres";
+
 dotenv.config();
 
 export default fp(async (fastify, opts) => {
