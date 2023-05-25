@@ -1,11 +1,29 @@
 import todoController from "../../controllers/todoController.js";
+import {
+  getTodosOpts,
+  createTodoOpts,
+  updateTodoOpts,
+  deleteTodoOpts,
+} from "../../schemas/todoSchemas.js";
 
 export default async function (fastify, opts) {
-  fastify.get("/", todoController.getTodos);
+  fastify.get("/", { schema: getTodosOpts.schema }, todoController.getTodos);
 
-  fastify.post("/", todoController.createTodo);
+  fastify.post(
+    "/",
+    { schema: createTodoOpts.schema },
+    todoController.createTodo
+  );
 
-  fastify.put("/:id", todoController.updateTodo);
+  fastify.put(
+    "/:id",
+    { schema: updateTodoOpts.schema },
+    todoController.updateTodo
+  );
 
-  fastify.delete("/:id", todoController.deleteTodo);
+  fastify.delete(
+    "/:id",
+    { schema: deleteTodoOpts.schema },
+    todoController.deleteTodo
+  );
 }
